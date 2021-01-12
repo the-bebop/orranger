@@ -3,12 +3,13 @@ project(orranger)
 
 # settings
 set(SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/src)
-set(BUILD_GUI ${SOURCE_DIR}/frontends/default)
+set(BUILD_GUI ${SOURCE_DIR}/frontends/basic)
 set(INSTALL_DIR ${CMAKE_BINARY_DIR}/install)
 
 # packages
 find_package(Protobuf REQUIRED)
 set(CMAKE_INSTALL_PREFIX ${INSTALL_DIR})
+set(CMAKE_BUILD_TYPE Debug)
 
 add_subdirectory(${BUILD_GUI})
 add_subdirectory(${SOURCE_DIR}/backend/)

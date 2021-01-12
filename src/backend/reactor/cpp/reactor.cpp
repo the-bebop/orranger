@@ -1,12 +1,30 @@
+#include <algorithm>
+#include <frontends/basic/run.hpp>
 #include <hpp/reactor.hpp>
+#include <iostream>
 
-bool reactor::Reactor::update()
-{
-    printf("In Reactor's update\n");
+namespace reactor {
 
-    std::string proc_string = std::string("Working in Dummy Proc");
-    printf("[Reactor] before processing '%s'\n", proc_string.c_str());
-    printf(" %s\n", proc.workMyString(proc_string).c_str());
-
-    return false;
+bool Reactor::shall_quit() {
+  return (std::find(gui_events.begin(), gui_events.end(), events::QUIT) !=
+          gui_events.end())
+             ? false
+             : true;
 }
+
+bool Reactor::update() {
+  for (auto &event : gui_events)
+    printf("%i \n", event);
+
+  return this->shall_quit();
+}
+
+Reactor::Reactor(int argc, char **argv) {
+  std::thread gui_thread(run, argc, argv, ref(this->gui_events));
+  threads.push_back(std::move(gui_thread));
+
+  for (auto &thread : threads)
+    thread.detach();
+}
+
+} // end namespace reactor
