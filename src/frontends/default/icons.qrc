@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/basic_editor_handles">
-        <file>assets/stop.svg</file>
-        <file>assets/record.svg</file>
-        <file>assets/pauseplay.svg</file>
-    </qresource>
-</RCC>
