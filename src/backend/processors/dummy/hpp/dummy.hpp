@@ -1,3 +1,6 @@
+#ifndef backend_processors_dummy_hpp
+#define backend_processors_dummy_hpp
+
 #include <string>
 
 namespace processors {
@@ -15,3 +18,5 @@ public:
 };
 
 } // namespace processors
+
+#endif // backend_processors_dummy_hpp

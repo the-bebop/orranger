@@ -15,9 +15,11 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 set(SOURCES
         ${SRC_DIR}/main.cpp
         ${SRC_DIR}/reactor.cpp
+        ${SRC_DIR}/moderator.cpp
 )
 set(INCLUDES
         ${INC_DIR}/reactor.hpp
+        ${INC_DIR}/moderator.hpp
 )
 set(TARGET_FILES ${SOURCES} ${INCLUDES})
 

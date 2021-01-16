@@ -3,6 +3,7 @@
 
 #include <backend/processors/dummy/hpp/dummy.hpp>
 #include <frontends/common/gui_events.hpp>
+#include <hpp/moderator.hpp>
 
 #include <thread>
 #include <vector>
@@ -19,8 +20,7 @@ private:
   processors::DummyProc proc;
   std::vector<std::thread> threads;
   bool shall_quit();
-
-  std::vector<events::MainControls> gui_events;
+  moderator::Moderator moderator;
 
 public:
   Reactor(int argc, char **argv);

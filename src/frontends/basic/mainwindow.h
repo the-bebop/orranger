@@ -1,8 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "../common/gui_events.hpp"
 #include <QMainWindow>
+#include <backend/reactor/hpp/moderator.hpp>
+#include <frontends/common/gui_events.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,11 +18,11 @@ public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-  void set_event_list(std::vector<events::MainControls> &events_to_extern);
+  void set_event_list(moderator::Moderator &reactor_moderator);
 
 private:
   Ui::MainWindow *ui;
-  std::vector<events::MainControls> *event_list;
+  moderator::Moderator *moderator;
 
 private slots:
   void release_playpause();
