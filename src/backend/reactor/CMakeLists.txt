@@ -22,9 +22,14 @@ set(INCLUDES
         ${INC_DIR}/moderator.hpp
 )
 set(TARGET_FILES ${SOURCES} ${INCLUDES})
+set(CMAKE_CXX_STANDARD 17)
+set(ADDITIONAL_TARGET_LIST
+        processor_dummy
+        processor_audio_gen
+        )
 
 add_executable(${TARGET} ${TARGET_FILES})
 target_include_directories(${TARGET} PRIVATE ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_SOURCE_DIR}/src)
-target_link_libraries(${TARGET} processor_dummy Qt${QT_VERSION_MAJOR}::Widgets basic ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${TARGET} ${ADDITIONAL_TARGET_LIST} Qt${QT_VERSION_MAJOR}::Widgets basic ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION backend)

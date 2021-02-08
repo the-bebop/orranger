@@ -8,6 +8,7 @@ set(INSTALL_DIR ${CMAKE_BINARY_DIR}/install)
 
 # packages
 find_package(Protobuf REQUIRED)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INSTALL_PREFIX ${INSTALL_DIR})
 set(CMAKE_BUILD_TYPE Debug)
 

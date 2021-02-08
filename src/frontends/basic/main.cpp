@@ -14,5 +14,6 @@
  */
 int main(int argc, char *argv[]) {
   moderator::Moderator events;
-  run(argc, argv, events);
+  gui::UserInterface gui(argc, argv, events);
+  gui.run();
 }

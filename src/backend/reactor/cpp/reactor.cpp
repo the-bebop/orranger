@@ -5,23 +5,29 @@
 
 namespace reactor {
 
-bool Reactor::shall_quit() {
-  auto gui_events = moderator.get_events();
-  return (std::find(gui_events.begin(), gui_events.end(), events::QUIT) !=
-          gui_events.end())
-             ? false
-             : true;
-}
-
 bool Reactor::update() {
-  for (auto &event : moderator.get_events())
+  bool quitter = true;
+  std::vector<events::MainControls> current_events;
+  moderator.get_events(current_events);
+  for (auto &event : current_events) {
     printf("%i \n", event);
+    switch (event) {
+    case events::QUIT:
 
-  return this->shall_quit();
+      quitter = false;
+      break;
+    }
+  }
+
+  return quitter;
 }
 
 Reactor::Reactor(int argc, char **argv) {
-  std::thread gui_thread(run, argc, argv, std::ref(moderator));
+  printf("ALRIGHT\n");
+  gui::UserInterface gui = gui::UserInterface(argc, argv, moderator);
+  printf("YIPP\n");
+  std::thread gui_thread(&gui::UserInterface::run, &gui);
+  printf("GO\n");
   threads.push_back(std::move(gui_thread));
 
   for (auto &thread : threads)

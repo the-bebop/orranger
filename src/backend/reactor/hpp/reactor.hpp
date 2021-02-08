@@ -1,6 +1,7 @@
 #ifndef backend_reactor_hpp_main
 #define backend_reactor_hpp_main
 
+#include <backend/processors/audio_gen/hpp/audio_gen.hpp>
 #include <backend/processors/dummy/hpp/dummy.hpp>
 #include <frontends/common/gui_events.hpp>
 #include <hpp/moderator.hpp>
@@ -18,8 +19,9 @@ namespace reactor {
 class Reactor {
 private:
   processors::DummyProc proc;
+  processors::AudioGenerator audio_gen;
+
   std::vector<std::thread> threads;
-  bool shall_quit();
   moderator::Moderator moderator;
 
 public:
